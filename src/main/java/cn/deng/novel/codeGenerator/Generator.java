@@ -94,6 +94,7 @@ public class Generator {
                         .entityBuilder()
                         //开启Lombok注解
                         .enableLombok()
+//                        .idType(ASSIGN_ID)
                         //设置逻辑删除的数据库列名
                         .logicDeleteColumnName("is_deleted")
                         //添加表字段填充(还需要配合数据填充器)，"create_time"字段自动填充为插入时间，"modify_time"字段自动填充为插入修改时间
