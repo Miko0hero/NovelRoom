@@ -1,7 +1,7 @@
 package cn.deng.novel.core.common.exception;
 
 import cn.deng.novel.core.common.constant.ErrorCodeEnum;
-import cn.deng.novel.core.common.response.RestResponse;
+import cn.deng.novel.core.common.response.RestResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,27 +20,27 @@ public class CommonExceptionHandler {
      * 处理数据校验异常
      * */
     @ExceptionHandler(BindException.class)
-    public RestResponse<Void> handlerBindException(BindException e){
+    public RestResp<Void> handlerBindException(BindException e){
         log.error(e.getMessage(),e);
-        return RestResponse.fail(ErrorCodeEnum.USER_REQUEST_PARAM_ERROR);
+        return RestResp.fail(ErrorCodeEnum.USER_REQUEST_PARAM_ERROR);
     }
 
     /**
      * 处理业务异常
      * */
     @ExceptionHandler(BusinessException.class)
-    public RestResponse<Void> handlerBusinessException(BusinessException e){
+    public RestResp<Void> handlerBusinessException(BusinessException e){
         log.error(e.getMessage(),e);
-        return RestResponse.fail(e.getErrorCodeEnum());
+        return RestResp.fail(e.getErrorCodeEnum());
     }
 
     /**
      * 处理系统异常
      * */
     @ExceptionHandler(Exception.class)
-    public RestResponse<Void> handlerException(Exception e){
+    public RestResp<Void> handlerException(Exception e){
         log.error(e.getMessage(),e);
-        return RestResponse.error();
+        return RestResp.error();
     }
 
 }

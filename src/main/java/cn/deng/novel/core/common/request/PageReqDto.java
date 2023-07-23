@@ -8,7 +8,7 @@ import lombok.Data;
  * @description
  */
 @Data
-public class PageRequestDto {
+public class PageReqDto {
 
     /**
      * 请求页码，默认第 1 页

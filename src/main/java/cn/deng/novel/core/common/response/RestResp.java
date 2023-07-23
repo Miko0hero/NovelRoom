@@ -11,65 +11,65 @@ import java.util.Objects;
  * @description     响应数据格式
  */
 @Getter
-public class RestResponse<T> {
+public class RestResp<T> {
     /**
      * 响应码
      */
-    private String code;
+    private final String code;
 
     /**
      * 响应消息
      */
-    private String message;
+    private final String message;
 
     /**
      * 响应数据
      */
     private T data;
-
-    private RestResponse() {
+    private RestResp() {
         this.code = ErrorCodeEnum.OK.getCode();
         this.message = ErrorCodeEnum.OK.getMessage();
     }
 
-    private RestResponse(ErrorCodeEnum errorCode) {
+    private RestResp(ErrorCodeEnum errorCode) {
         this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
     }
 
-    private RestResponse(T data) {
+    private RestResp(T data) {
+        this();
         this.data = data;
     }
 
     /**
      * 业务处理成功,无数据返回
      */
-    public static RestResponse<Void> success() {
-        return new RestResponse<>();
+    public static RestResp<Void> success() {
+        return new RestResp<>();
     }
 
     /**
      * 业务处理成功，有数据返回
      */
-    public static <T> RestResponse<T> success(T data) {
-        return new RestResponse<>(data);
+    public static <T> RestResp<T> success(T data) {
+        return new RestResp<>(data);
     }
     /**
      * 业务处理失败
      */
-    public static RestResponse<Void> fail(ErrorCodeEnum errorCode) {
-        return new RestResponse<>(errorCode);
+    public static RestResp<Void> fail(ErrorCodeEnum errorCode) {
+        return new RestResp<>(errorCode);
     }
 
     /**
      * 系统错误
      */
-    public static RestResponse<Void> error() {
-        return new RestResponse<>(ErrorCodeEnum.SYSTEM_ERROR);
+    public static RestResp<Void> error() {
+        return new RestResp<>(ErrorCodeEnum.SYSTEM_ERROR);
     }
 
     /**
-     * 判断是否成功
+     * 判断是否成功,会一同被序列化
      */
     public boolean isOk() {
         return Objects.equals(this.code, ErrorCodeEnum.OK.getCode());

@@ -10,7 +10,7 @@ import java.util.List;
  * @description
  */
 @Getter
-public class PageResponseDto<T> {
+public class PageRespDto<T> {
 
     /**
      * 页码
@@ -36,15 +36,15 @@ public class PageResponseDto<T> {
      * 该构造函数用于通用分页查询的场景
      * 接收普通分页数据和普通集合
      */
-    public PageResponseDto(long pageNum, long pageSize, long total, List<T> list) {
+    public PageRespDto(long pageNum, long pageSize, long total, List<T> list) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
         this.total = total;
         this.list = list;
     }
 
-    public static <T> PageResponseDto<T> of(long pageNum, long pageSize, long total, List<T> list) {
-        return new PageResponseDto<>(pageNum, pageSize, total, list);
+    public static <T> PageRespDto<T> of(long pageNum, long pageSize, long total, List<T> list) {
+        return new PageRespDto<>(pageNum, pageSize, total, list);
     }
 
     /**

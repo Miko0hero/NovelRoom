@@ -12,7 +12,7 @@ import org.springframework.cache.annotation.EnableCaching;
 @Slf4j
 @SpringBootApplication
 @EnableCaching
-@MapperScan(basePackages = "cn.deng.novel")
+@MapperScan(basePackages = "cn.deng.novel.mapper")
 public class NovelRoomApplication {
 
     public static void main(String[] args) {
