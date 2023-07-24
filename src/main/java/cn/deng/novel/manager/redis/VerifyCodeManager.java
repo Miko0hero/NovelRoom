@@ -29,7 +29,6 @@ public class VerifyCodeManager {
         //验证码为4位
         String verifyCode= ImgVerifyCodeUtils.getRandomVerifyCode(4);
         String img =ImgVerifyCodeUtils.genVerifyCodeImg(verifyCode);
-        log.info(img);
         stringRedisTemplate.opsForValue().set(CacheConstants.IMG_VERIFY_CODE_CACHE_KEY+sessionId,verifyCode, Duration.ofMinutes(5));
         return img;
     }

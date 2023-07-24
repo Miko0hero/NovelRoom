@@ -1,9 +1,8 @@
-package cn.deng.novel.controller;
+package cn.deng.novel.controller.front;
 
 import cn.deng.novel.core.common.constant.ApiRouterConstants;
 import cn.deng.novel.core.common.response.RestResp;
 import cn.deng.novel.dto.response.ImgVerifyCodeResponseDto;
-import cn.deng.novel.entity.BookCategory;
 import cn.deng.novel.service.ResourceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +30,5 @@ public class ResourceController {
     public RestResp<ImgVerifyCodeResponseDto> getImgVerifyCode() throws IOException {
         return resourceService.getImgVerifyCode();
     }
-    @GetMapping("/test")
-    public BookCategory test(){
-        return new BookCategory();
-    }
+
 }

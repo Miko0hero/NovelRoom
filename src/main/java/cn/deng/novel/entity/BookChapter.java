@@ -1,14 +1,11 @@
 package cn.deng.novel.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -16,7 +13,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Deng
- * @since 2023/07/23
+ * @since 2023/07/24
  */
 @Getter
 @Setter

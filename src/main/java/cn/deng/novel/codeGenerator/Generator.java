@@ -83,18 +83,19 @@ public class Generator {
                         .disable(TemplateType.CONTROLLER))
                 // 策略配置
                 .strategyConfig(builder -> builder
-
                         .addInclude(getTables(tables)) // 设置需要生成的表名
                         .controllerBuilder()
                         //开启生成@RestController 控制器
                         .enableRestStyle()
+                        .mapperBuilder()
+                        .enableMapperAnnotation()
                         .serviceBuilder()
                         .formatServiceFileName("%sService")
                         //entity策略模式
                         .entityBuilder()
                         //开启Lombok注解
                         .enableLombok()
-//                        .idType(ASSIGN_ID)
+                        //.idType(ASSIGN_ID)
                         //设置逻辑删除的数据库列名
                         .logicDeleteColumnName("is_deleted")
                         //添加表字段填充(还需要配合数据填充器)，"create_time"字段自动填充为插入时间，"modify_time"字段自动填充为插入修改时间
@@ -102,6 +103,7 @@ public class Generator {
                                 new Column("create_time", FieldFill.INSERT),
                                 new Column("update_time", FieldFill.INSERT_UPDATE)
                         )
+
                 )
                 // 开启生成@RestController 控制器
                 //.templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板

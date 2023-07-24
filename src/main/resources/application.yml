@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 8080
 spring:
   # 数据源相关设置
   datasource:
@@ -26,5 +26,8 @@ novel:
   cors:
     # 跨域设置
     allow-origins:
-      - http://localhost:1025
+      - http://localhost:4048
       - http://localhost:8080
+  #JWT秘钥
+  jwt:
+    secret: 8SDS8JW7DSJ37SAN378SD32KQD7823RFH782892NDF
