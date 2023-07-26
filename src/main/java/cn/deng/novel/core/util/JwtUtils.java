@@ -16,7 +16,7 @@ import java.util.Objects;
 /**
  * @author Deng
  * @date 2023/7/24
- * @description JWT工具类
+ * @description JWT工具类  因为使用了spring的依赖注入，所以不能设置为静态工具类
  */
 @Slf4j
 @Component

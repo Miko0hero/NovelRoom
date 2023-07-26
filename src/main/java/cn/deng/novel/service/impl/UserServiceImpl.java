@@ -5,7 +5,10 @@ import cn.deng.novel.core.common.constant.SystemConfigConstants;
 import cn.deng.novel.core.common.exception.BusinessException;
 import cn.deng.novel.core.common.response.RestResp;
 import cn.deng.novel.core.util.JwtUtils;
+import cn.deng.novel.dto.req.UserLoginReqDto;
 import cn.deng.novel.dto.req.UserRegisterReqDto;
+import cn.deng.novel.dto.response.UserInfoRespDto;
+import cn.deng.novel.dto.response.UserLoginRespDto;
 import cn.deng.novel.dto.response.UserRegisterRespDto;
 import cn.deng.novel.entity.UserInfo;
 import cn.deng.novel.manager.redis.VerifyCodeManager;
@@ -61,5 +64,37 @@ public class UserServiceImpl implements UserService {
                         .uid(userInfo.getId())
                         .build()
         );
+    }
+
+    @Override
+    public RestResp<UserLoginRespDto> login(UserLoginReqDto userLoginReqDto) {
+        //查询用户信息
+        LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(UserInfo::getUsername, userLoginReqDto.getUsername());
+        UserInfo userInfo = userInfoMapper.selectOne(queryWrapper);
+        //如果数据库中查不到数据，返回账号不存在异常
+        if (userInfo == null) {
+            throw new BusinessException(ErrorCodeEnum.USER_ACCOUNT_NOT_EXIST);
+        }
+        //判断密码是否正确
+        if (!userInfo.getPassword().equals(DigestUtils.md5DigestAsHex(userLoginReqDto.getPassword().getBytes()))) {
+            throw new BusinessException(ErrorCodeEnum.USER_PASSWORD_ERROR);
+        }
+        //成功登录，生成并返回JWT
+        return RestResp.success(UserLoginRespDto.builder()
+                .nickName(userInfo.getNickName())
+                .uid(userInfo.getId())
+                .token(jwtUtils.generateToken(userInfo.getId(), SystemConfigConstants.NOVEL_FRONT_KEY))
+                .build());
+    }
+
+    @Override
+    public RestResp<UserInfoRespDto> getUserInfo(Long userId) {
+        UserInfo userInfo = userInfoMapper.selectById(userId);
+        return RestResp.success(UserInfoRespDto.builder()
+                .nickName(userInfo.getNickName())
+                .userSex(userInfo.getUserSex())
+                .userPhoto(userInfo.getUserPhoto())
+                .build());
     }
 }
