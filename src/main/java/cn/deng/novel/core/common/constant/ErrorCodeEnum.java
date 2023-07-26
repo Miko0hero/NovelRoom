@@ -121,6 +121,10 @@ public enum ErrorCodeEnum {
      * 用户上传文件类型不匹配
      */
     USER_UPLOAD_FILE_TYPE_NOT_MATCH("A0701", "用户上传文件类型不匹配"),
+    /**
+     * 用户上传图片名称异常
+     */
+    USER_UPLOAD_FILE_NAME_EMPTY("A0702","用户上传文件名称为空"),
 
     /**
      * 一级宏观错误码，系统执行出错

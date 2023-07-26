@@ -31,3 +31,6 @@ novel:
   #JWT秘钥
   jwt:
     secret: 8SDS8JW7DSJ37SAN378SD32KQD7823RFH782892NDF
+  file:
+    upload:
+      path: D:\git_Init\novel_images

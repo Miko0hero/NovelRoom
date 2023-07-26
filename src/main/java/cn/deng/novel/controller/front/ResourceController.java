@@ -6,8 +6,10 @@ import cn.deng.novel.dto.response.ImgVerifyCodeResponseDto;
 import cn.deng.novel.service.ResourceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
@@ -31,4 +33,11 @@ public class ResourceController {
         return resourceService.getImgVerifyCode();
     }
 
+    /**
+     * 图片上传接口
+     */
+    @PostMapping("/image")
+    public RestResp<String> uploadImage(MultipartFile file) throws IOException {
+        return resourceService.uploadImage(file);
+    }
 }
