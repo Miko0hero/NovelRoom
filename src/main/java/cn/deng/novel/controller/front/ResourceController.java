@@ -2,7 +2,7 @@ package cn.deng.novel.controller.front;
 
 import cn.deng.novel.core.common.constant.ApiRouterConstants;
 import cn.deng.novel.core.common.response.RestResp;
-import cn.deng.novel.dto.response.ImgVerifyCodeResponseDto;
+import cn.deng.novel.dto.resp.ImgVerifyCodeResponseDto;
 import cn.deng.novel.service.ResourceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

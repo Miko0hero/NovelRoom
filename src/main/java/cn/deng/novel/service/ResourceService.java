@@ -1,7 +1,7 @@
 package cn.deng.novel.service;
 
 import cn.deng.novel.core.common.response.RestResp;
-import cn.deng.novel.dto.response.ImgVerifyCodeResponseDto;
+import cn.deng.novel.dto.resp.ImgVerifyCodeResponseDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

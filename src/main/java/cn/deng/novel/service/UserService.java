@@ -3,9 +3,9 @@ package cn.deng.novel.service;
 import cn.deng.novel.core.common.response.RestResp;
 import cn.deng.novel.dto.req.UserLoginReqDto;
 import cn.deng.novel.dto.req.UserRegisterReqDto;
-import cn.deng.novel.dto.response.UserInfoRespDto;
-import cn.deng.novel.dto.response.UserLoginRespDto;
-import cn.deng.novel.dto.response.UserRegisterRespDto;
+import cn.deng.novel.dto.resp.UserInfoRespDto;
+import cn.deng.novel.dto.resp.UserLoginRespDto;
+import cn.deng.novel.dto.resp.UserRegisterRespDto;
 
 /**
  * @author Deng

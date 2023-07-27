@@ -69,7 +69,7 @@ public class RestResp<T> {
     }
 
     /**
-     * 判断是否成功,会一同被序列化
+     * 判断是否成功,会一同被序列化到json中
      */
     public boolean isOk() {
         return Objects.equals(this.code, ErrorCodeEnum.OK.getCode());

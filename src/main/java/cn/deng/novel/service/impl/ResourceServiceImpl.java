@@ -4,9 +4,10 @@ import cn.deng.novel.core.common.constant.ErrorCodeEnum;
 import cn.deng.novel.core.common.constant.SystemConfigConstants;
 import cn.deng.novel.core.common.exception.BusinessException;
 import cn.deng.novel.core.common.response.RestResp;
-import cn.deng.novel.dto.response.ImgVerifyCodeResponseDto;
+import cn.deng.novel.dto.resp.ImgVerifyCodeResponseDto;
 import cn.deng.novel.manager.redis.VerifyCodeManager;
 import cn.deng.novel.service.ResourceService;
+import cn.deng.novel.service.UserService;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,8 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ResourceServiceImpl implements ResourceService {
 
+    private final UserService userService;
+
     private final VerifyCodeManager verifyCodeManager;
 
     @Value("${novel.file.upload.path}")
@@ -51,7 +54,9 @@ public class ResourceServiceImpl implements ResourceService {
         LocalDateTime currentTime = LocalDateTime.now();
         //构建图片保存路径
         String savePath = SystemConfigConstants.IMAGE_UPLOAD_DIRECTORY
-                + currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                + currentTime.format(DateTimeFormatter.ofPattern("yyyy")) + File.separator
+                + currentTime.format(DateTimeFormatter.ofPattern("MM")) + File.separator
+                + currentTime.format(DateTimeFormatter.ofPattern("dd"));
         //获取上传图片的原始名称
         String originalName = file.getOriginalFilename();
         //图片名称为空，直接抛出业务异常
@@ -77,6 +82,7 @@ public class ResourceServiceImpl implements ResourceService {
             Files.delete(saveFile.toPath());
             throw new BusinessException(ErrorCodeEnum.USER_UPLOAD_FILE_TYPE_NOT_MATCH);
         }
+
         //返回相对路径
         return RestResp.success(savePath + File.separator + saveFileName);
     }

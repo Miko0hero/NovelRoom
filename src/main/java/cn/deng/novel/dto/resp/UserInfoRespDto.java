@@ -1,4 +1,4 @@
-package cn.deng.novel.dto.response;
+package cn.deng.novel.dto.resp;
 
 import lombok.Builder;
 import lombok.Data;
