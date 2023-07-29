@@ -1,11 +1,14 @@
 package cn.deng.novel.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
-import java.util.Date;
 
 /**
  * <p>
@@ -13,7 +16,7 @@ import java.util.Date;
  * </p>
  *
  * @author Deng
- * @since 2023/07/24
+ * @since 2023/07/29
  */
 @Getter
 @Setter
@@ -51,10 +54,10 @@ public class BookChapter implements Serializable {
     private Integer isVip;
 
     @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
 
 }

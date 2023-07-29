@@ -1,7 +1,7 @@
 package cn.deng.novel.manager.redis;
 
 import cn.deng.novel.core.common.constant.CacheConstants;
-import cn.deng.novel.core.common.util.ImgVerifyCodeUtils;
+import cn.deng.novel.core.util.ImgVerifyCodeUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;

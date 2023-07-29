@@ -7,7 +7,6 @@ import cn.deng.novel.core.common.response.RestResp;
 import cn.deng.novel.dto.resp.ImgVerifyCodeResponseDto;
 import cn.deng.novel.manager.redis.VerifyCodeManager;
 import cn.deng.novel.service.ResourceService;
-import cn.deng.novel.service.UserService;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,8 +33,6 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class ResourceServiceImpl implements ResourceService {
-
-    private final UserService userService;
 
     private final VerifyCodeManager verifyCodeManager;
 
@@ -85,7 +82,6 @@ public class ResourceServiceImpl implements ResourceService {
             Files.delete(saveFile.toPath());
             throw new BusinessException(ErrorCodeEnum.USER_UPLOAD_FILE_TYPE_NOT_MATCH);
         }
-
         //返回相对路径
         return RestResp.success(savePath + File.separator + saveFileName);
     }

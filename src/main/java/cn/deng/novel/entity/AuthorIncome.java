@@ -6,7 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Deng
- * @since 2023/07/24
+ * @since 2023/07/29
  */
 @Getter
 @Setter
@@ -44,7 +45,7 @@ public class AuthorIncome implements Serializable {
     /**
      * 收入月份
      */
-    private Date incomeMonth;
+    private LocalDate incomeMonth;
 
     /**
      * 税前收入;单位：分
@@ -75,13 +76,13 @@ public class AuthorIncome implements Serializable {
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
 
 }

@@ -63,7 +63,7 @@ public class Generator {
                             //.enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
                             .commentDate("yyyy/MM/dd")
-                            .dateType(DateType.ONLY_DATE)
+                            .dateType(DateType.TIME_PACK)
                             .fileOverride()
                             .disableOpenDir()
                             .outputDir(PROJECT_PATH + JAVA_PATH); // 指定输出目录

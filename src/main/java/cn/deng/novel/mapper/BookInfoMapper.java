@@ -16,7 +16,7 @@ import java.util.List;
  * </p>
  *
  * @author Deng
- * @since 2023/07/24
+ * @since 2023/07/29
  */
 @Mapper
 public interface BookInfoMapper extends BaseMapper<BookInfo> {
@@ -26,5 +26,5 @@ public interface BookInfoMapper extends BaseMapper<BookInfo> {
      * @param condition 查询条件
      * @return 小说信息列表
      */
-    List<BookInfo> searchBooks(IPage<BookInfoRespDto> page,@Param("condition") BookSearchReqDto condition);
+    List<BookInfo> searchBooks(IPage<BookInfoRespDto> page, @Param("condition") BookSearchReqDto condition);
 }

@@ -3,6 +3,7 @@ package cn.deng.novel.controller.front;
 import cn.deng.novel.core.common.constant.ApiRouterConstants;
 import cn.deng.novel.core.common.response.RestResp;
 import cn.deng.novel.dto.resp.BookCategoryRespDto;
+import cn.deng.novel.dto.resp.BookRankRespDto;
 import cn.deng.novel.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,32 @@ public class BookController {
      * 小说分类列表查询接口
      */
     @GetMapping("/category/list")
-    public RestResp<List<BookCategoryRespDto>> listCategory(Integer workDirection){
+    public RestResp<List<BookCategoryRespDto>> listCategory(Integer workDirection) {
         return bookService.listCategory(workDirection);
     }
+
+    /**
+     * 小说点击榜查询接口
+     */
+    @GetMapping("visit_rank")
+    public RestResp<List<BookRankRespDto>> listVisitRankBooks() {
+        return bookService.listVisitRankBooks();
+    }
+
+    /**
+     * 小说新书榜查询接口
+     */
+    @GetMapping("newest_rank")
+    public RestResp<List<BookRankRespDto>> listNewestRankBooks() {
+        return bookService.listNewestRankBooks();
+    }
+
+    /**
+     * 小说更新榜查询接口
+     */
+    @GetMapping("update_rank")
+    public RestResp<List<BookRankRespDto>> listUpdateRankBooks() {
+        return bookService.listUpdateRankBooks();
+    }
+
 }

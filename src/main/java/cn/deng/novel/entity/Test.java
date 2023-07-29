@@ -1,8 +1,9 @@
 package cn.deng.novel.entity;
 
-import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -10,7 +11,7 @@ import lombok.Setter;
  * </p>
  *
  * @author Deng
- * @since 2023/07/24
+ * @since 2023/07/29
  */
 @Getter
 @Setter

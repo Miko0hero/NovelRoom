@@ -1,4 +1,4 @@
-package cn.deng.novel.core.common.util;
+package cn.deng.novel.core.util;
 
 import lombok.experimental.UtilityClass;
 

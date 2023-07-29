@@ -1,10 +1,11 @@
 package cn.deng.novel.core.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author Deng
@@ -12,6 +13,7 @@ import java.util.Date;
  * @description 公共字段处理器，设置公共字段自动填充
  */
 @Component
+@Slf4j
 public class MyMetaObjectHandler implements MetaObjectHandler {
     /**
      * 插入时的填充策略
@@ -19,8 +21,9 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         //与setValue设置的作用是一样的
-        this.setFieldValByName("createTime", new Date(), metaObject);
-        this.setFieldValByName("updateTime", new Date(), metaObject);
+        this.setFieldValByName("createTime", LocalDateTime.now(), metaObject);
+        log.info("自动填充公共字段");
+        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
     }
 
     /**
@@ -28,6 +31,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.setFieldValByName("updateTime", new Date(), metaObject);
+        log.info("自动填充公共字段");
+        this.setFieldValByName("updateTime", LocalDateTime.now(), metaObject);
     }
 }
