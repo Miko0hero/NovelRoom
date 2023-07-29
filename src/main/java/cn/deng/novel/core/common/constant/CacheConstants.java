@@ -94,6 +94,7 @@ public class CacheConstants {
      */
     public static final String AUTHOR_INFO_CACHE_NAME = "authorInfoCache";
 
+
     /**
      * 缓存配置常量
      */

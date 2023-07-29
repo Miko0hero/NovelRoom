@@ -16,7 +16,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
@@ -85,5 +88,23 @@ public class ResourceServiceImpl implements ResourceService {
 
         //返回相对路径
         return RestResp.success(savePath + File.separator + saveFileName);
+    }
+
+    @Override
+    public void readFile(String fileName, HttpServletResponse response, String filePath) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath + fileName);
+            ServletOutputStream servletOutputStream = response.getOutputStream();
+            int len;
+            byte[] bytes = new byte[2048];
+            while ((len = fileInputStream.read(bytes)) != -1) {
+                servletOutputStream.write(bytes, 0, len);
+            }
+            servletOutputStream.flush();
+            servletOutputStream.close();
+            fileInputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

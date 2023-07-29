@@ -8,6 +8,7 @@ import cn.deng.novel.mapper.BookInfoMapper;
 import cn.deng.novel.mapper.HomeBookMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
  * @description 首页推荐小说缓存管理类，包含一个查询方法
  */
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class HomeBookCacheManager {
 
@@ -34,9 +36,10 @@ public class HomeBookCacheManager {
     /**
      * 查询首页小说推荐，缓存中存在数据则直接查缓存
      */
-    @Cacheable(cacheManager = CacheConstants.CAFFEINE_CACHE_MANAGER,value = CacheConstants.HOME_BOOK_CACHE_NAME)
+    @Cacheable(cacheManager = CacheConstants.CAFFEINE_CACHE_MANAGER, value = CacheConstants.HOME_BOOK_CACHE_NAME)
     public List<HomeBookRespDto> listHomeBooks() {
         //从首页小说推荐表中查询,根据sort升序
+        log.info("无小说推荐缓存");
         LambdaQueryWrapper<HomeBook> wrapper = new LambdaQueryWrapper<>();
         wrapper.orderByAsc(HomeBook::getSort);
         List<HomeBook> homeBookList = homeBookMapper.selectList(wrapper);
@@ -52,10 +55,10 @@ public class HomeBookCacheManager {
             if (!CollectionUtils.isEmpty(bookInfoList)) {
                 //Id-BookInfo的map
                 Map<Long, BookInfo> bookInfoMap = bookInfoList.stream().collect(Collectors.toMap(BookInfo::getId, Function.identity()));
-                List<HomeBookRespDto> homeBookRespDtoList = homeBookList.stream().map(
+                return homeBookList.stream().map(
                         homeBook -> {
                             BookInfo bookInfo = bookInfoMap.get(homeBook.getBookId());
-                            HomeBookRespDto homeBookRespDto = HomeBookRespDto.builder()
+                            return HomeBookRespDto.builder()
                                     .bookId(homeBook.getBookId())
                                     .bookName(bookInfo.getBookName())
                                     .type(homeBook.getType())
@@ -63,10 +66,8 @@ public class HomeBookCacheManager {
                                     .picUrl(bookInfo.getPicUrl())
                                     .bookDesc(bookInfo.getBookDesc())
                                     .build();
-                            return homeBookRespDto;
                         }
                 ).collect(Collectors.toList());
-                return homeBookRespDtoList;
             }
         }
         return Collections.emptyList();
