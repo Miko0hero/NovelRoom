@@ -3,6 +3,7 @@ package cn.deng.novel.controller.front;
 import cn.deng.novel.core.common.constant.ApiRouterConstants;
 import cn.deng.novel.core.common.response.RestResp;
 import cn.deng.novel.dto.resp.HomeBookRespDto;
+import cn.deng.novel.dto.resp.HomeFriendLinkRespDto;
 import cn.deng.novel.service.HomeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,5 +30,13 @@ public class HomeController {
     @GetMapping("/books")
     public RestResp<List<HomeBookRespDto>> listHomeBooks(){
         return homeService.listHomeBooks();
+    }
+
+    /**
+     * 首页友情链接列表查询接口
+     */
+    @GetMapping("friend_Link/list")
+    public RestResp<List<HomeFriendLinkRespDto>> listHomeFriendLinks(){
+        return homeService.listHomeFriendLinks();
     }
 }
