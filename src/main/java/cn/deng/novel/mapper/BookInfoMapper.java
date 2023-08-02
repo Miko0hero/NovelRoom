@@ -20,6 +20,7 @@ import java.util.List;
  */
 @Mapper
 public interface BookInfoMapper extends BaseMapper<BookInfo> {
+
     /**
      * 根据条件查询小说信息，
      * @param page Mybatis-Plus的分页对象，查询结果会传入到IPage中，也会传入到返回结果中

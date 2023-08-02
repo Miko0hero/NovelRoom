@@ -6,6 +6,7 @@ import cn.deng.novel.dto.resp.NewsInfoRespDto;
 import cn.deng.novel.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +30,13 @@ public class NewsController {
     @GetMapping("latest_list")
     public RestResp<List<NewsInfoRespDto>> listLatestNews(){
         return newsService.listLatestNews();
+    }
+
+    /**
+     * 新闻详细信息
+     */
+    @GetMapping("{id}")
+    public RestResp<NewsInfoRespDto> getNews(@PathVariable Long id){
+        return newsService.getNews(id);
     }
 }

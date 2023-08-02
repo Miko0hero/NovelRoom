@@ -2,6 +2,7 @@ package cn.deng.novel.core.config;
 
 import cn.deng.novel.core.common.constant.CacheConstants;
 import com.alibaba.fastjson2.support.spring.data.redis.FastJsonRedisSerializer;
+import com.alibaba.fastjson2.support.spring.data.redis.GenericFastJsonRedisSerializer;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCache;
@@ -78,10 +79,12 @@ public class CacheConfig {
                     cacheMap.put(c.getName(), RedisCacheConfiguration.defaultCacheConfig().disableCachingNullValues()
                             .prefixCacheNameWith(CacheConstants.REDIS_CACHE_PREFIX)
                             .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                            .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(new FastJsonRedisSerializer<>(Object.class))))
+                            .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(new GenericFastJsonRedisSerializer())))
                             .entryTtl(Duration.ofSeconds(c.getTtl())));
                 } else {
                     cacheMap.put(c.getName(), RedisCacheConfiguration.defaultCacheConfig().disableCachingNullValues()
+                            .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+                            .serializeValuesWith((RedisSerializationContext.SerializationPair.fromSerializer(new FastJsonRedisSerializer<>(Object.class))))
                             .prefixCacheNameWith(CacheConstants.REDIS_CACHE_PREFIX));
                 }
             }

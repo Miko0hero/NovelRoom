@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -25,6 +26,7 @@ import java.util.List;
  */
 @Configuration
 @RequiredArgsConstructor
+@EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private final TokenParseInterceptor tokenParseInterceptor;
@@ -38,7 +40,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         FastJsonConfig config = new FastJsonConfig();
         config.setDateFormat("yyyy-MM-dd HH:mm:ss");
         config.setReaderFeatures(JSONReader.Feature.FieldBased, JSONReader.Feature.SupportArrayToBean);
-        config.setWriterFeatures(JSONWriter.Feature.WriteMapNullValue, JSONWriter.Feature.PrettyFormat);
+        //设置序列化时吧Long类型转换成String类型，防止前端接收参数发生精度丢失
+        config.setWriterFeatures(JSONWriter.Feature.WriteMapNullValue, JSONWriter.Feature.PrettyFormat,JSONWriter.Feature.WriteLongAsString);
         converter.setFastJsonConfig(config);
         converter.setDefaultCharset(StandardCharsets.UTF_8);
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -51,6 +54,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(@NonNull InterceptorRegistry registry) {
         registry.addInterceptor(tokenParseInterceptor);
+    }
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        WebMvcConfigurer.super.configureMessageConverters(converters);
     }
 }
 

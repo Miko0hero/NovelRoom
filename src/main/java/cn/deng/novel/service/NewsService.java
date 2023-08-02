@@ -11,8 +11,17 @@ import java.util.List;
  * @description
  */
 public interface NewsService {
+
     /**
      * 最新新闻列表查询
      */
     RestResp<List<NewsInfoRespDto>> listLatestNews();
+
+    /**
+     * 新闻信息查询
+     *
+     * @param id 新闻ID
+     * @return 新闻信息
+     */
+    RestResp<NewsInfoRespDto> getNews(Long id);
 }

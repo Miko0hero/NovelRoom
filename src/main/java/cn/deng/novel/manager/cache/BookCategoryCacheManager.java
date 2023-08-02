@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @RequiredArgsConstructor
-public class BookCategoryManager {
+public class BookCategoryCacheManager {
 
     private final BookCategoryMapper bookCategoryMapper;
 
