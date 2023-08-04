@@ -29,7 +29,7 @@ public class ImageController {
      * 根据路径返回图片
      */
     @GetMapping("/localPic/{year}/{month}/{day}/{fileName}")
-    public void readImage(@PathVariable String year, @PathVariable String month, @PathVariable String day, @PathVariable String fileName, HttpServletResponse response) {
+    public void readLocalPic(@PathVariable String year, @PathVariable String month, @PathVariable String day, @PathVariable String fileName, HttpServletResponse response) {
         String filePath = prefixPath + File.separator + "localPic" + File.separator + year + File.separator + month + File.separator + day + File.separator;
         resourceService.readFile(fileName, response, filePath);
     }
@@ -41,4 +41,5 @@ public class ImageController {
         String filePath = prefixPath+File.separator;
         resourceService.readFile(fileName, response, filePath);
     }
+
 }

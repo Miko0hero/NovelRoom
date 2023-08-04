@@ -35,7 +35,7 @@ public class SystemConfigConstants {
     /**
      * 图片上传目录
      */
-    public static final String IMAGE_UPLOAD_DIRECTORY = "/image/";
+    public static final String IMAGE_UPLOAD_DIRECTORY = "/localPic/";
 
     /**
      * 常量类实例化异常信息

@@ -43,8 +43,7 @@ public class AuthorInfoCacheManager {
     /**
      * 调用此方法自动清除作家信息的缓存
      */
-    @CacheEvict(cacheManager = CacheConstants.REDIS_CACHE_MANAGER,
-            value = CacheConstants.AUTHOR_INFO_CACHE_NAME)
+    @CacheEvict(cacheManager = CacheConstants.REDIS_CACHE_MANAGER, value = CacheConstants.AUTHOR_INFO_CACHE_NAME)
     public void evictAuthorCache() {
     }
 }

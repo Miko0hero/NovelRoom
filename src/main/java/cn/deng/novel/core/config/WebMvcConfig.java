@@ -1,6 +1,7 @@
 package cn.deng.novel.core.config;
 
 
+import cn.deng.novel.core.interceptor.AuthInterceptor;
 import cn.deng.novel.core.interceptor.TokenParseInterceptor;
 import com.alibaba.fastjson2.JSONReader;
 import com.alibaba.fastjson2.JSONWriter;
@@ -30,6 +31,8 @@ import java.util.List;
 public class WebMvcConfig implements WebMvcConfigurer {
 
     private final TokenParseInterceptor tokenParseInterceptor;
+
+    private final AuthInterceptor authInterceptor;
     /**
      * 添加FastJson到消息转换器中
      */
@@ -53,11 +56,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(@NonNull InterceptorRegistry registry) {
-        registry.addInterceptor(tokenParseInterceptor);
+       // registry.addInterceptor(tokenParseInterceptor);
+        registry.addInterceptor(authInterceptor);
     }
 
     @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    public void configureMessageConverters(@NonNull List<HttpMessageConverter<?>> converters) {
         WebMvcConfigurer.super.configureMessageConverters(converters);
     }
 }

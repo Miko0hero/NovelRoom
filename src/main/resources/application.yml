@@ -27,6 +27,12 @@ novel:
     allow-origins:
       - http://localhost:4048
       - http://localhost:8080
+  xss:
+    # 过滤开关
+    enabled: true
+    # 排除链接
+    excludes:
+      - /system/notice/*
   #JWT秘钥
   jwt:
     secret: 8SDS8JW7DSJ37SAN378SD32KQD7823RFH782892NDF
